@@ -5,3 +5,6 @@ dist/
 .venv/
 *.txt
 .vscode/
+.idea
+.DS_store
+gendiff/.vscode
