@@ -6,4 +6,11 @@ python-package "Gendiff" (study only)
 ![Python CI](https://github.com/ivekhov/python-project-lvl2/workflows/Python%20CI/badge.svg)
 
 ----
+
+asciinema recording (Step #3)
+
+[![asciicast](https://asciinema.org/a/EoKBSfVkFOTU1VPiqrRE8sWLG.svg)](https://asciinema.org/a/EoKBSfVkFOTU1VPiqrRE8sWLG)
+
+
+----
 This is study package "gendiff" made on Hexlet Project #2 in Python Programmer profession.
