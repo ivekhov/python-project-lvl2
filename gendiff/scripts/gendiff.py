@@ -9,7 +9,15 @@ MINUS = '  - '
 EMPTY = '    '
 
 
-def get_files():
+def get_files() -> (object, object):
+    """
+    Get files from command line arguments.
+
+    Returns:
+        file: first file for further comparing.
+        file: second file for further comparing.
+
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('first_file')
     parser.add_argument('second_file')
@@ -17,7 +25,20 @@ def get_files():
     return args.first_file, args.second_file
 
 
-def create_check_result(prefix, key, value, response):
+def create_check_result(prefix, key, value, response) -> list:
+    """
+    Append elements into list given. List is transformed by this function.
+
+    Args:
+        prefix: string constant.
+        key: key from some dictionary.
+        value: value of this key.
+        responce: array where these arguments are added.
+
+    Returns:
+        array: with added arguments.
+
+    """
     response.append(prefix)
     response.append(key)
     response.append(': ')
@@ -25,7 +46,18 @@ def create_check_result(prefix, key, value, response):
     response.append('\n')
 
 
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2) -> str:
+    """
+    Compare content of two files given and make output with result.
+
+    Args:
+        file_path1: first file path for comparing.
+        file_path2: second file path for comparing.
+
+    Returns:
+        row with results of comparing.
+
+    """
     first = json.load(open(file_path1))
     second = json.load(open(file_path2))
     response = ['{', '\n']
@@ -35,14 +67,12 @@ def generate_diff(file_path1, file_path2):
                 create_check_result(EMPTY, key, second[key], response)
             else:
                 create_check_result(MINUS, key, first[key], response)
-                create_check_result(PLUS, key, second[key], response)   
+                create_check_result(PLUS, key, second[key], response)
         else:
             create_check_result(PLUS, key, second[key], response)
     for key in first:
         if key not in second:
             create_check_result(MINUS, key, first[key], response)
-
-
     response.append('}')
     output = ''.join(response)
     return output
