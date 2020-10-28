@@ -25,27 +25,6 @@ def get_files() -> (object, object):
     return args.first_file, args.second_file
 
 
-def create_check_result(prefix, key, value, response) -> list:
-    """
-    Append elements into list given. List is transformed by this function.
-
-    Args:
-        prefix: string constant.
-        key: key from some dictionary.
-        value: value of this key.
-        responce: array where these arguments are added.
-
-    Returns:
-        array: with added arguments.
-
-    """
-    response.append(prefix)
-    response.append(key)
-    response.append(': ')
-    response.append(str(value).lower().strip())
-    response.append('\n')
-
-
 def generate_diff(file_path1, file_path2) -> str:
     """
     Compare content of two files given and make output with result.
@@ -58,24 +37,26 @@ def generate_diff(file_path1, file_path2) -> str:
         row with results of comparing.
 
     """
-    first = json.load(open(file_path1))
-    second = json.load(open(file_path2))
-    response = ['{', '\n']
-    for key in second:
-        if key in first.keys():
-            if first[key] == second[key]:
-                create_check_result(EMPTY, key, second[key], response)
-            else:
-                create_check_result(MINUS, key, first[key], response)
-                create_check_result(PLUS, key, second[key], response)
-        else:
-            create_check_result(PLUS, key, second[key], response)
-    for key in first:
-        if key not in second:
-            create_check_result(MINUS, key, first[key], response)
-    response.append('}')
-    output = ''.join(response)
-    return output
+    with open(file_path1) as file_1:
+        first = json.load(file_1)
+        with open(file_path2) as file_2:
+            second = json.load(file_2)
+            output_buffer = ['{']
+            new_keys = list(second.keys() - first.keys())
+            deleted_keys = list(first.keys() - second.keys())
+            common_keys = list(first.keys() & second.keys())
+            for key in new_keys:
+                output_buffer.append('{}{}: {}'.format(PLUS, key, str(second[key]).strip()))
+            for key in deleted_keys:
+                output_buffer.append('{}{}: {}'.format(MINUS, key, str(first[key]).strip()))
+            for key in common_keys:
+                if first[key] == second[key]:
+                    output_buffer.append('{}{}: {}'.format(EMPTY, key, str(first[key]).strip()))
+                else:
+                    output_buffer.append('{}{}: {}'.format(MINUS, key, str(first[key]).strip()))                
+                    output_buffer.append('{}{}: {}'.format(PLUS, key, str(second[key]).strip()))
+    output_buffer.append('}')
+    return '\n'.join(output_buffer)
 
 
 def main():
