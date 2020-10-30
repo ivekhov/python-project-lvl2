@@ -9,4 +9,4 @@ dist/
 .DS_store
 gendiff/.vscode
 deprecated/
-gediff/data
+gendiff/data
