@@ -7,6 +7,7 @@ import json
 PLUS = '  + '
 MINUS = '  - '
 EMPTY = '    '
+OUTPUT_ROW_PATTERN = '{}{}: {}'
 
 
 def get_files() -> (object, object):
@@ -38,8 +39,7 @@ def extend_buffer(prefix, key, value, output_buffer) -> list:
     Returns:
         array: with added arguments.
     """
-    output_buffer.append('{}{}: {}'.format(prefix, key, value))
-
+    output_buffer.append(OUTPUT_ROW_PATTERN.format(prefix, key, value))
 
 def generate_diff(file_path1, file_path2) -> str:
     """

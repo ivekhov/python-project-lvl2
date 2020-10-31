@@ -1,11 +1,13 @@
 """JSON files comparing correctness test."""
 
+import pytest
+
 from gendiff.scripts.gendiff import generate_diff
 
 
 def test_output():
 	"""Check output."""
-	output = generate_diff('file01.json', 'file02.json')
+	output = generate_diff('./tests/fixtures/file01.json', './tests/fixtures/file02.json')
 	expected = """{
   + verbose: True
   - follow: False
@@ -14,10 +16,8 @@ def test_output():
   - timeout: 50
   + timeout: 20
 }"""
-	print(output)
-	print(expected)
 	assert output == expected
 
 
-if __name__ == '__main__':
-	test_output()
+def test_():
+	pass
