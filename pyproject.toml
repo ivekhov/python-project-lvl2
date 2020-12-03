@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "ivekhov_gendiff"
-version = "0.3.0"
+name = "hexlet_code"
+version = "0.1.0"
 description = ""
 authors = ["ivekhov"]
 packages = [

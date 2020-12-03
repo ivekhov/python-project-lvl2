@@ -19,9 +19,10 @@ def get_files() -> (object, object):
         file: second file for further comparing.
 
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file')
     parser.add_argument('second_file')
+    parser.add_argument('-f', '--format', help='set format of output')
     args = parser.parse_args()
     return args.first_file, args.second_file
 
@@ -41,6 +42,7 @@ def extend_buffer(prefix, key, value, output_buffer) -> list:
     """
     output_buffer.append(OUTPUT_ROW_PATTERN.format(prefix, key, value))
 
+
 def generate_diff(file_path1, file_path2) -> str:
     """
     Compare content of two files given and make output with result.
@@ -57,20 +59,29 @@ def generate_diff(file_path1, file_path2) -> str:
         first = json.load(file_1)
     with open(file_path2) as file_2:
         second = json.load(file_2)
-    output_buffer = ['{']
     new_keys = second.keys() - first.keys()
     deleted_keys = first.keys() - second.keys()
     common_keys = first.keys() & second.keys()
+    all_keys = []
     for key in new_keys:
-        extend_buffer(PLUS, key, second[key], output_buffer)
+        all_keys.append(key)
     for key in deleted_keys:
-        extend_buffer(MINUS, key, first[key], output_buffer)
+        all_keys.append(key)
     for key in common_keys:
-        if first[key] == second[key]:
-            extend_buffer(EMPTY, key, first[key], output_buffer)
-        else:
-            extend_buffer(MINUS, key, first[key], output_buffer)
+        all_keys.append(key)
+    all_keys.sort()
+    output_buffer = ['{']
+    for key in all_keys:
+        if key in new_keys:
             extend_buffer(PLUS, key, second[key], output_buffer)
+        if key in deleted_keys:
+            extend_buffer(MINUS, key, first[key], output_buffer)
+        if key in common_keys:
+            if first[key] == second[key]:
+                extend_buffer(EMPTY, key, first[key], output_buffer)
+            else:
+                extend_buffer(MINUS, key, first[key], output_buffer)
+                extend_buffer(PLUS, key, second[key], output_buffer)
     output_buffer.append('}')
     return '\n'.join(output_buffer)
 

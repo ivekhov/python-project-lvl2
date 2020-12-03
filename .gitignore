@@ -10,3 +10,4 @@ dist/
 gendiff/.vscode
 deprecated/
 gendiff/data
+*.code-workspace
