@@ -31,3 +31,4 @@ jobs:
     - name: Check code style
       run: |
         make lint
+        make test
