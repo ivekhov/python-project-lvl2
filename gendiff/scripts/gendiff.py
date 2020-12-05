@@ -41,6 +41,8 @@ def extend_buffer(prefix, key, value, output_buffer) -> list:
     Returns:
         array: with added arguments.
     """
+    if type(value) is bool:
+        value = str(value).lower()
     output_buffer.append(OUTPUT_ROW_PATTERN.format(prefix, key, value))
 
 

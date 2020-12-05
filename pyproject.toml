@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet_code"
-version = "0.1.0"
+version = "0.2.0"
 description = "Study package made on Hexlet Project #2 in Python programmer profession with files comparing in CLI"
 authors = ["Ivan Vekhov <ivekhov@gmail.com>"]
 packages = [
