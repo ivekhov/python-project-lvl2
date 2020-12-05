@@ -7,9 +7,9 @@ python-package "Gendiff" (study only)
 
 ----
 
-asciinema recording (Step #3)
+asciinema recording (Step #5)
 
-[![asciicast](https://asciinema.org/a/EoKBSfVkFOTU1VPiqrRE8sWLG.svg)](https://asciinema.org/a/EoKBSfVkFOTU1VPiqrRE8sWLG)
+[![asciicast](https://asciinema.org/a/1r6MmcsIsdgpf1cFVdceseay6.svg)](https://asciinema.org/a/1r6MmcsIsdgpf1cFVdceseay6)
 
 
 ----
