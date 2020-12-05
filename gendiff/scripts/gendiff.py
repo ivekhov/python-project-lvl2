@@ -1,8 +1,8 @@
 """Starting point for comparing JSON files"""
 
 import argparse
-import json
-import yaml
+
+from gendiff.tools import parse
 
 
 PLUS = '  + '
@@ -56,19 +56,8 @@ def generate_diff(file_path1, file_path2) -> str:
         row with results of comparing.
 
     """
-    with open(file_path1) as file_1:
-        file_format = file_path1.split('.')[-1]
-        if file_format == 'json':
-            first = json.load(file_1)
-        if file_format == 'yml':
-            first = yaml.load(file_1)
-    with open(file_path2) as file_2:
-        file_format = file_path2.split('.')[-1]
-        if file_format == 'json':
-            second = json.load(file_2)
-        if file_format == 'yml':
-            second = yaml.load(file_2)
-
+    dicts = parse.parse_files(file_path1, file_path2)
+    first, second = dicts[0], dicts[1]
     new_keys = second.keys() - first.keys()
     deleted_keys = first.keys() - second.keys()
     common_keys = first.keys() & second.keys()
