@@ -3,7 +3,6 @@ __pycache__
 dist/
 *.pyc
 .venv/
-*.txt
 .vscode/
 .idea
 .DS_store

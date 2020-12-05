@@ -11,8 +11,15 @@ def read_correct(filename):
 	return ''.join(answer)
 
 
-def test_output():
+def test_json():
 	"""Check output."""
 	output = generate_diff('./tests/fixtures/file01.json', './tests/fixtures/file02.json')
+	expected = read_correct('./tests/fixtures/test_01_correct.txt')
+	assert output == expected
+
+
+def test_yaml():
+	"""Check output."""
+	output = generate_diff('./tests/fixtures/file03.yml', './tests/fixtures/file04.yml')
 	expected = read_correct('./tests/fixtures/test_01_correct.txt')
 	assert output == expected

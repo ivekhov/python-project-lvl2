@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import yaml
 
 
 PLUS = '  + '
@@ -33,7 +34,7 @@ def extend_buffer(prefix, key, value, output_buffer) -> list:
 
     Args:
         prefix: string constant.
-        key: key from some dictionary.
+        key: key from some dictionary.1
         value: value of this key.
         output_buffer: array where these arguments are added.
 
@@ -48,17 +49,26 @@ def generate_diff(file_path1, file_path2) -> str:
     Compare content of two files given and make output with result.
 
     Args:
-        file_path1: first file path for comparing.
-        file_path2: second file path for comparing.
+        file_path1: first file for comparing.
+        file_path2: second file for comparing.
 
     Returns:
         row with results of comparing.
 
     """
     with open(file_path1) as file_1:
-        first = json.load(file_1)
+        file_format = file_path1.split('.')[-1]
+        if file_format == 'json':
+            first = json.load(file_1)
+        if file_format == 'yml':
+            first = yaml.load(file_1)
     with open(file_path2) as file_2:
-        second = json.load(file_2)
+        file_format = file_path2.split('.')[-1]
+        if file_format == 'json':
+            second = json.load(file_2)
+        if file_format == 'yml':
+            second = yaml.load(file_2)
+
     new_keys = second.keys() - first.keys()
     deleted_keys = first.keys() - second.keys()
     common_keys = first.keys() & second.keys()
