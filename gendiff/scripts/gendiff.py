@@ -3,12 +3,12 @@
 """Script for gendiff start."""
 
 
-from gendiff.tools.gendiff_help import gendiff_help
+from gendiff.tools import gendiff_help
 
 
 def main():
     """."""
-    gendiff_help()
+    gendiff_help.gendiff_help()
 
 
 if __name__ == '__main__':
