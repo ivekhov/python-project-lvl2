@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-"""Script for gendiff start."""
+"""Script for gendiff usage."""
 
-
-from gendiff.tools import gendiff_help
+from gendiff.tools import generate_diff
 
 
 def main():
-    """."""
-    gendiff_help.gendiff_help()
+    """Call main function of script."""
+    diff = generate_diff(formatter='stylish')
+    print(diff)
 
 
 if __name__ == '__main__':

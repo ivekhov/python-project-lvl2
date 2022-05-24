@@ -1,6 +1,4 @@
-#!/usr/bin/env python3
-
-"""Script for gendiff help."""
+"""Help function for gendiff."""
 
 import argparse
 
