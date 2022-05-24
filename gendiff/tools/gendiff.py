@@ -58,6 +58,9 @@ def generate_diff(file_path_01, file_path_02, formatter):
     file_type_01 = get_file_type(file_path_01)
     content_01 = extract_content(file_01, file_type_01)
 
+    file_02 = read_file(file_path_02)
+    file_type_02 = get_file_type(file_path_02)
+    content_02 = extract_content(file_02, file_type_02)
 
 #
 
