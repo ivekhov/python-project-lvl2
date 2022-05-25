@@ -44,16 +44,22 @@ def extract_content(file, file_type):
 def parse_content(content):
     '''
 
-    :param content:
-    :return:
+    :param content dict type
+    :return: internal
     '''
 
 
-def formatter():
-    pass
+def generate_diff(file_path_01, file_path_02) -> dict:
+    '''
+    Generate diff between to dicts.
 
+    :param file_path_01:
+    :param file_path_02:
+    :param formatter:
+    :return:
+    '''
+    result = dict()
 
-def generate_diff(file_path_01, file_path_02, formatter):
     file_01 = read_file(file_path_01)
     file_type_01 = get_file_type(file_path_01)
     content_01 = extract_content(file_01, file_type_01)
@@ -62,19 +68,39 @@ def generate_diff(file_path_01, file_path_02, formatter):
     file_type_02 = get_file_type(file_path_02)
     content_02 = extract_content(file_02, file_type_02)
 
-#
+    # ToDo
+
+
+
+
+
+
+    #
+    return result
+
+
+def stylish(diff) -> str:
+    '''
+    Formatting row for pretty printing.
+    :param diff:
+    :return: str
+    '''
+    result = ''
+
+    # ToDo
+
+
+
+
+    #
+    return result
+
 
 # parser = argparse.ArgumentParser(description='Generate diff')
 # parser.add_argument('first_file')
 # parser.add_argument('second_file')
 # parser.add_argument('-f', '--format', help='set format of output')
 # return parser.parse_args()
-
-
-#ToDo
-#1
-# json.load(open()) = returns a dict
-# yaml safe load return a dict
 
 
 
