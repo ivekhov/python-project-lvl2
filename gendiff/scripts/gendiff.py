@@ -2,7 +2,7 @@
 
 """Script for gendiff usage."""
 
-from gendiff.tools import generate_diff
+from gendiff.gendiff import generate_diff
 
 
 def main():

@@ -4,6 +4,10 @@ import argparse
 import json
 import yaml
 
+SPACE = ' '
+MINUS = '-'
+PLUS = '+'
+
 
 def get_file_type(file_path) -> str:
     '''
@@ -41,12 +45,30 @@ def extract_content(file, file_type):
     return content
 
 
-def parse_content(content):
-    '''
+def get_difference(first, second) -> dict:
 
-    :param content dict type
-    :return: internal
-    '''
+    intersection = set(first.keys()).intersection(set(second.keys()))
+    first_only = set(first.keys()).difference(set(second.keys()))
+    second_only = set(second.keys()).difference(set(first.keys()))
+
+    for node in intersection:
+        if type(first.get(node)) is dict:
+            new_node = ' '.join([SPACE, str(node)])
+            diff[new_node] = None
+            get_difference(first.get(node), second.get(node))
+
+        if first.get(node) == second.get(node):
+            new_node = ' '.join([SPACE, str(node)])
+            diff[new_node] = first.get(node)
+        elif first.get(node) != second.get(node):
+            diff[' '.join([MINUS, str(node)])] = second.get(node)
+            diff[' '.join([PLUS, str(node)])] = first.get(node)
+
+    for node in first_only:
+        diff[' '.join([PLUS, str(node)])] = first.get(node)
+
+    for node in second_only:
+        diff[' '.join([MINUS, str(node)])] = second.get(node)
 
 
 def generate_diff(file_path_01, file_path_02) -> dict:
@@ -58,7 +80,6 @@ def generate_diff(file_path_01, file_path_02) -> dict:
     :param formatter:
     :return:
     '''
-    result = dict()
 
     file_01 = read_file(file_path_01)
     file_type_01 = get_file_type(file_path_01)
@@ -69,14 +90,9 @@ def generate_diff(file_path_01, file_path_02) -> dict:
     content_02 = extract_content(file_02, file_type_02)
 
     # ToDo
-
-
-
-
-
-
-    #
-    return result
+    diff = dict()
+    get_difference(content_01, content_02)
+    return diff
 
 
 def stylish(diff) -> str:
