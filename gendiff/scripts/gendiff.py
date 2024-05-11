@@ -21,11 +21,6 @@ def main():
 
     print(diff)
 
-    # parser.add_argument('--version', action='version',
-    #                     version='%(prog)s 1.0'
-    #                     )
-
 
 if __name__ == '__main__':
     main()
-

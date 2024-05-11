@@ -7,8 +7,6 @@ def format_diff(diff, formatter):
     match formatter:
         case 'json':
             return jsonish(diff)
-        case 'json_markers':
-            return jsonish_markers(diff)
         case 'plain':
             return plain(diff)
         case 'stylish':
