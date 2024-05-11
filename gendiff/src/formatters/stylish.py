@@ -1,10 +1,4 @@
 def sort_tree(tree: list) -> list:
-    # if tree.get('status') == 'nested':
-    #     return sort_tree(tree.get('value'))
-
-    # temp
-    # return [list(item) for item in list(tree.items())]
-    
     return sorted(tree, key=lambda item: item.get('node'))
 
 

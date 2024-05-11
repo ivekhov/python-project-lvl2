@@ -162,4 +162,3 @@ cython_debug/
 .deprecated/
 
 __deprecated__/
-__gendiff__/

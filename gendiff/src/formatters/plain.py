@@ -11,6 +11,8 @@ def plain_strigify(current_value):
         return 'true'
     if current_value is False:
         return 'false'
+    if type(current_value) is int:
+        return f"{current_value}"
     return f"'{current_value}'"
 
 
