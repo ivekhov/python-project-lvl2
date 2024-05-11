@@ -1,4 +1,4 @@
-def sort_tree(tree: dict) -> list:
+def sort_tree(tree: list) -> list:
     # if tree.get('status') == 'nested':
     #     return sort_tree(tree.get('value'))
 
@@ -9,16 +9,13 @@ def sort_tree(tree: dict) -> list:
 
 
 def stringify(current_value, replacer, depth):
-    if (type(current_value) is not dict):
+    if type(current_value) is not dict:
         if current_value is None:
             return 'null'
-
         if current_value is True:
             return 'true'
-
         if current_value is False:
             return 'false'
-
         return f'{current_value}'
 
     indent_size = depth
@@ -36,11 +33,11 @@ def stringify(current_value, replacer, depth):
 def stylish(diff_tree):
     TAB = '    '
 
-    def crawler(list_, depth):
+    def crawler(items, depth):
 
         current_indent = TAB * depth
         bracket_indent = TAB * (depth - 1)
-        sorted_list = sort_tree(list_)
+        sorted_items = sort_tree(items)
 
         def inner(current_item):
             match current_item.get('status'):
@@ -57,7 +54,7 @@ def stylish(diff_tree):
                 case _:
                     raise ValueError(f"Unexpected status {current_item.get('status')}")
 
-        lines = list(map(inner, sorted_list))
+        lines = list(map(inner, sorted_items))
         
         return '\n'.join(['{', *lines, f'{bracket_indent}}}'])
 
