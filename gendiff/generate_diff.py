@@ -1,20 +1,9 @@
-import os
-from .comparators import compare_objects
-from .format_diff import format_diff
-from .parsers import parse_file
-
-
-def get_file_path(file_name):
-    return os.path.join(os.getcwd(), file_name)
-
-
-def read_file_content(file_path):
-    with open(file_path) as file:
-        return file.read()
-
-
-def get_file_extension(file_path):
-    return file_path.split('.')[-1]
+from gendiff.tools.comparators import compare_objects
+from gendiff.formatters.format_diff import format_diff
+from gendiff.tools.parsers import parse_file
+from gendiff.tools.parsers import read_file_content
+from gendiff.tools.parsers import get_file_extension
+from gendiff.tools.parsers import get_file_path
 
 
 def generate_diff(file_old, file_new, formatter='stylish'):

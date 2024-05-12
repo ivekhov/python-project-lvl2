@@ -114,6 +114,9 @@ $ make test
 
 # linter validation
 $ make lint
+
+# building a package
+$ make build
 ```
 
 ----
