@@ -23,17 +23,26 @@ def plain(diff_tree):
         def inner(current_item):
             match current_item.get('status'):
                 case 'added':
-                    return f"Property '{'.'.join([*keys, current_item.get('node')])}' was added with value: {plain_strigify(current_item.get('value'))}"
+                    nodes = '.'.join([*keys, current_item.get('node')])
+                    plain = plain_strigify(current_item.get('value'))
+                    return f"Property '{nodes}' was added with value: {plain}"
                 case 'deleted':
-                    return f"Property '{'.'.join([*keys, current_item.get('node')])}' was removed"
+                    nodes = '.'.join([*keys, current_item.get('node')])
+                    return f"Property '{nodes}' was removed"
                 case 'updated':
-                    return f"Property '{'.'.join([*keys, current_item.get('node')])}' was updated. From {plain_strigify(current_item.get('value_old'))} to {plain_strigify(current_item.get('value_new'))}"
+                    nodes = '.'.join([*keys, current_item.get('node')])
+                    plain_old = plain_strigify(current_item.get('value_old'))
+                    plain_new = plain_strigify(current_item.get('value_new'))
+                    return (f"Property '{nodes}' was updated. "
+                            f"From {plain_old} to {plain_new}")
                 case 'nested':
-                    return crawler(current_item.get('value'), [*keys, current_item.get('node')])
+                    return crawler(current_item.get('value'),
+                                   [*keys, current_item.get('node')])
                 case 'unchanged':
                     return
                 case _:
-                    raise ValueError(f"Unexpected status {current_item.get('status')}")
+                    raise ValueError("Unexpected status "
+                                     f"{current_item.get('status')}")
 
         lines = list(map(inner, sorted_items))
 
