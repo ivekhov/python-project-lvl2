@@ -18,7 +18,7 @@ Usage as package and module as well.
 ### Hexlet tests and linter status:
 [![Hexlet-check](https://github.com/ivekhov/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/ivekhov/python-project-lvl2/actions)
 
-<!-- ![Python CI](https://github.com/ivekhov/python-project-lvl2/workflows/Python%20CI/badge.svg) -->
+![Python CI](https://github.com/ivekhov/python-project-lvl2/workflows/Python%20CI/badge.svg)
 
 
 ### GitHub Actions
@@ -27,9 +27,12 @@ Usage as package and module as well.
 
 ### CodeClimate: Code Coverage
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/f9b0debda75ad31a2506/maintainability)](https://codeclimate.com/github/ivekhov/frontend-project-46/maintainability)
+[![Maintainability]
+<!-- (https://api.codeclimate.com/v1/badges/f9b0debda75ad31a2506/maintainability)] -->
+<!-- (https://codeclimate.com/github/ivekhov/python-project-lvl2/maintainability) -->
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/f9b0debda75ad31a2506/test_coverage)](https://codeclimate.com/github/ivekhov/frontend-project-46/test_coverage)
+[![Test Coverage]
+<!-- (https://api.codeclimate.com/v1/badges/f9b0debda75ad31a2506/test_coverage)](https://codeclimate.com/github/ivekhov/python-project-lvl2/test_coverage) --> 
 
 
 ---
