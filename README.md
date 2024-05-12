@@ -16,7 +16,9 @@ Usage as package and module as well.
 ---
 
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/ivekhov/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/ivekhov/python-project-lvl2/actions)
+[![Hexlet-check](https://github.com/ivekhov/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/ivekhov/python-project-lvl2/actions)
+
+<!-- ![Python CI](https://github.com/ivekhov/python-project-lvl2/workflows/Python%20CI/badge.svg) -->
 
 
 ### GitHub Actions
@@ -77,7 +79,7 @@ $ gendiff -f stylish file_extended_before.json file_extended_after.json
 
 ## Usage inside python as package
 ```python
-from gendiff.src.gendiff import generate_diff
+from gendiff import generate_diff
 
 generate_diff('file_before.json', 'file_before.json', formatter='stylish')
 ```
@@ -100,6 +102,10 @@ packages = [
 ...
 [tool.poetry.scripts]
 gendiff = 'gendiff.scripts.gendiff:main'
+
+# in __init__.py inside gendiff directory add: 
+__all__ = ['generate_diff']
+from .generate_diff import generate_diff
 
 ```
 
