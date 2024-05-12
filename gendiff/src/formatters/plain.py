@@ -37,6 +37,6 @@ def plain(diff_tree):
 
         lines = list(map(inner, sorted_items))
 
-        return '\n'.join(filter(lambda item: type(item) is str , lines))
+        return '\n'.join(filter(lambda item: type(item) is str, lines))
 
     return crawler(diff_tree, [])

@@ -1,13 +1,13 @@
 # Project 2 "Compute Differences of files"
 
-Part of Python Developer Profession on Hexlet: 
+**Part of Python Developer Profession on Hexlet**
 https://hexlet.io/programs/python
 
-Project description:
+**Official project description**
 https://ru.hexlet.io/programs/python/projects/50
 
 
-## About
+## About tool
 
 CLI utility for comparing difference of two files and format diff.
 Publishing only locally (not in PyPI).
@@ -15,16 +15,13 @@ Usage as package and module as well.
 
 ---
 
-
-
-
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ivekhov/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/ivekhov/python-project-lvl2/actions)
 
 
 ### GitHub Actions
 
-[![Actions Status](https://github.com/ivekhov/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ivekhov/frontend-project-46/actions)
+[![Actions Status](https://github.com/ivekhov/python-project-lvl2/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ivekhov/python-project-lvl2/actions)
 
 ### CodeClimate: Code Coverage
 
@@ -37,30 +34,58 @@ Usage as package and module as well.
 ## How it works 
 Asciinema: 
 
-[![asciicast](https://asciinema.org/a/##.svg)](https://asciinema.org/a/##)
+[![asciicast](https://asciinema.org/a/5J9otro3SrQMvT04IRO0pcQAE.svg)](https://asciinema.org/a/5J9otro3SrQMvT04IRO0pcQAE)
 
+
+Reminder on asciinema usage:
+```bash
+# install asciinema
+$ brew install asciinema
+
+# record asciinedma in terminal
+$ asciinema rec
+```
 
 ## Setup local
 
 ```bash
-make install-local
+$ git clone git@github.com:ivekhov/python-project-lvl2.git
 
-gendiff -h
+$ make install
 ```
 
-## Usage example
+## Help
+```bash
+$ gendiff -h
+```
 
+
+## Usage  as CLI utility
+
+```bash
+
+$ gendiff -h
+
+$ gendiff file_before.json file_after.json
+
+$ gendiff -f plain file_before.json file_after.json
+
+$ gendiff -f stylish file_before.yml file_after.yml
+
+$ gendiff -f stylish file_extended_before.json file_extended_after.json
+```
+
+## Usage inside python as package
 ```python
-from hexlet-code import gendiff 
+from gendiff.src.gendiff import generate_diff
+
+generate_diff('file_before.json', 'file_before.json', formatter='stylish')
 ```
 
 ## Run tests
 
 ```bash
 make test
-
-# example of usage
-gendiff  __fixtures__/file01.json __fixtures__/file02.json
 ```
 
 ## Development
@@ -68,26 +93,27 @@ gendiff  __fixtures__/file01.json __fixtures__/file02.json
 Once when developing:
 
 ```bash
-# add in package.json
-"bin": {
-  "gendiff": "bin/gendiff.py"
-}, 
+# add in pyproject.toml
+packages = [
+    {include = "gendiff"},
+]
+...
+[tool.poetry.scripts]
+gendiff = 'gendiff.scripts.gendiff:main'
 
-chmod +x bin/gendiff.py
 ```
 
 After changing code:
 
 ```bash
-make test
+# in one command 3 checks: test lint selfcheck
+$ make check
 
-make lint
+# tests: basic and extended
+$ make test
 
-make install-local
-
-make publish
-
-make gendiff-help
+# linter validation
+$ make lint
 ```
 
 ----

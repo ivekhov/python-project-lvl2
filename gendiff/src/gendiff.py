@@ -31,8 +31,9 @@ def generate_diff(file_old, file_new, formatter='stylish'):
 
     try:
         file_extension_old != file_extension_new
-    except:
-        raise NameError('File extensions are not equal: ${file_extension_old}, ${file_extension_new}.')
+    except Exception:
+        raise NameError('File extensions are not equal: '
+                        f'{file_extension_old}, ${file_extension_new}.')
 
     object_old = parse_file(file_content_old, file_extension_old)
     object_new = parse_file(file_content_new, file_extension_new)

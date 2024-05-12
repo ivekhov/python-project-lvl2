@@ -14,8 +14,8 @@ def main():
     parser.add_argument('filepath2')
 
     diff = generate_diff(
-        parser.parse_args().filepath1, 
-        parser.parse_args().filepath2, 
+        parser.parse_args().filepath1,
+        parser.parse_args().filepath2,
         parser.parse_args().format
     )
 
