@@ -27,12 +27,9 @@ Usage as package and module as well.
 
 ### CodeClimate: Code Coverage
 
-[![Maintainability]
-<!-- (https://api.codeclimate.com/v1/badges/f9b0debda75ad31a2506/maintainability)] -->
-<!-- (https://codeclimate.com/github/ivekhov/python-project-lvl2/maintainability) -->
+[![Maintainability](https://api.codeclimate.com/v1/badges/08bbdb63d8f1e1c68211/maintainability)](https://codeclimate.com/github/ivekhov/python-project-lvl2/maintainability)
 
-[![Test Coverage]
-<!-- (https://api.codeclimate.com/v1/badges/f9b0debda75ad31a2506/test_coverage)](https://codeclimate.com/github/ivekhov/python-project-lvl2/test_coverage) --> 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/08bbdb63d8f1e1c68211/test_coverage)](https://codeclimate.com/github/ivekhov/python-project-lvl2/test_coverage)
 
 
 ---
