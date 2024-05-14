@@ -1,8 +1,19 @@
-def sort_tree(tree: list) -> list:
+from typing import Dict, List
+
+
+def sort_tree(tree: List[Dict]) -> list:
     return sorted(tree, key=lambda item: item.get('node'))
 
 
-def plain_strigify(current_value):
+def plain_strigify(current_value: object) -> str:
+    """Convert object type to fix name in string format.
+
+    Args:
+        param (object): Object for type identification.
+
+    Returns:
+        str: Name of object in string format.
+    """
     if type(current_value) is dict:
         return '[complex value]'
     if current_value is None:
@@ -16,7 +27,15 @@ def plain_strigify(current_value):
     return f"'{current_value}'"
 
 
-def plain(diff_tree):
+def plain(diff_tree: List[Dict]) -> str:
+    """Formatter of diff tree to plain view.
+
+    Args:
+        tree (List): Difference between two files.
+
+    Returns:
+        str: String with result of comparison.
+    """
     def crawler(items, keys):
         sorted_items = sort_tree(items)
 
