@@ -1,15 +1,23 @@
 from typing import Dict, List
 
 
-def sort_tree(tree: List[Dict]) -> list:
+def sort_tree(tree: List[Dict]) -> List[Dict]:
+    """Sorting dicts inside list by value of 'node' value.
+
+    Args:
+        tree (List[Dict]): List of dicts with description of nodes.
+
+    Returns:
+        List[Dict]: Sorted list of dicts by 'node' value.
+    """
     return sorted(tree, key=lambda item: item.get('node'))
 
 
 def plain_strigify(current_value: object) -> str:
-    """Convert object type to fix name in string format.
+    """Convert object type to fix name in 'plain' string format.
 
     Args:
-        param (object): Object for type identification.
+        current_value (object): Object for type identification.
 
     Returns:
         str: Name of object in string format.
@@ -28,13 +36,13 @@ def plain_strigify(current_value: object) -> str:
 
 
 def plain(diff_tree: List[Dict]) -> str:
-    """Formatter of diff tree to plain view.
+    """Formatter of diff tree to 'plain' view.
 
     Args:
-        tree (List): Difference between two files.
+        tree (List): Difference between two files in tree format.
 
     Returns:
-        str: String with result of comparison.
+        str: String with result of comparison in 'plain' format.
     """
     def crawler(items, keys):
         sorted_items = sort_tree(items)

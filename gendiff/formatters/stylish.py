@@ -1,8 +1,27 @@
-def sort_tree(tree: list) -> list:
+from typing import Dict, List
+
+
+def sort_tree(tree: List[Dict]) -> List[Dict]:
+    """Sorting dicts inside list by value of 'node' value.
+
+    Args:
+        tree (List[Dict]): List of dicts with description of nodes.
+
+    Returns:
+        List[Dict]: Sorted list of dicts by 'node' value.
+    """
     return sorted(tree, key=lambda item: item.get('node'))
 
 
-def stringify(current_value, replacer, depth):
+def stringify(current_value: object, replacer: str, depth: int) -> str:
+    """Create a string in 'stylish' format recursively for object.
+
+    Args:
+        current_value (object): Object for type identification.
+
+    Returns:
+        str: Name of object in string format.
+    """
     if type(current_value) is not dict:
         if current_value is None:
             return 'null'
@@ -26,7 +45,15 @@ def stringify(current_value, replacer, depth):
     return '\n'.join(["{", lines, f"{bracket_indent}}}"])
 
 
-def stylish(diff_tree):
+def stylish(diff_tree: List[Dict]) -> str:
+    """Formatter of diff tree to 'stylish' view.
+
+    Args:
+        tree (List): Difference between two files in tree format.
+
+    Returns:
+        str: Result of comparison in 'stylish' format.
+    """
     TAB = ' ' * 4
 
     def crawler(items, depth):

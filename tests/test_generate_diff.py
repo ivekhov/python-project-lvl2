@@ -1,15 +1,19 @@
 import os
 import pytest
 from gendiff import generate_diff
+from gendiff.tools.parsers import read_file_content
 
 
-def get_fixture_path(file_name):
+def get_fixture_path(file_name: str) -> str:
+    """Creates full path to fixture file according to OS.
+
+    Args:
+        file_path (str): Fixture name.
+
+    Returns:
+        str: Full absolute path to fixture file.
+    """
     return os.path.join(os.getcwd(), 'tests', 'fixtures', file_name)
-
-
-def read_file_content(file_path):
-    with open(file_path) as file:
-        return file.read()
 
 
 @pytest.fixture

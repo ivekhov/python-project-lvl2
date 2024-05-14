@@ -1,4 +1,16 @@
-def compare_objects(object_old, object_new):
+from typing import Dict, List
+
+
+def compare_objects(object_old: Dict, object_new: Dict) -> List[Dict]:
+    """Comparator of two dicts for detecting differences.
+
+    Args:
+        object_old (Dict): Dict with content of old file (before changing).
+        object_new (Dict): Dict with content of new file (after changing).
+
+    Returns:
+        List[Dict]: Differences of two dicts in tree format with inner structue.
+    """
     keys = set(object_old.keys()).union(object_new.keys())
 
     def inner(key):

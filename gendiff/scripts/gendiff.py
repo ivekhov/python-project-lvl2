@@ -3,6 +3,19 @@ from gendiff import generate_diff
 
 
 def main():
+    """CLI utility for comparing difference of two files and format diff.
+
+    Args:
+        filepath1 (str): Path to first file.
+        filepath2 (str): Path to second file.
+        format (str): Optional, name of formatter.
+
+    Returns:
+        None: CLI print result in terminal.
+
+    Example:
+        $ gendiff file_before.json file_after.json
+    """
     parser = argparse.ArgumentParser(
         prog='gendiff',
         description='Compares two configuration files and shows a difference.')
