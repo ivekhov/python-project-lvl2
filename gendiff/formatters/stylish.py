@@ -27,7 +27,7 @@ def stringify(current_value, replacer, depth):
 
 
 def stylish(diff_tree):
-    TAB = '    '
+    TAB = ' ' * 4
 
     def crawler(items, depth):
 

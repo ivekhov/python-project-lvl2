@@ -34,7 +34,5 @@ def compare_objects(object_old, object_new):
                     'value_old': object_old[key],
                     'value_new': object_new[key]
                 }
-        raise ValueError('Objects are not comparable. Check input. '
-                         f'{object_old} \n {object_new}')
 
     return list(map(inner, keys))

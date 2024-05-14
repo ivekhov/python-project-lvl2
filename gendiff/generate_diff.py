@@ -1,5 +1,5 @@
 from gendiff.tools.comparators import compare_objects
-from gendiff.formatters.format_diff import format_diff
+from gendiff.formatters import format_diff
 from gendiff.tools.parsers import parse_file
 from gendiff.tools.parsers import read_file_content
 from gendiff.tools.parsers import get_file_extension
