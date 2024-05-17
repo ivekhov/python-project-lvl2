@@ -16,134 +16,63 @@ def get_fixture_path(file_name: str) -> str:
     return os.path.join(os.getcwd(), 'tests', 'fixtures', file_name)
 
 
-@pytest.fixture
-def file_before_json():
-    return get_fixture_path('file_before.json')
-
-
-@pytest.fixture
-def file_after_json():
-    return get_fixture_path('file_after.json')
-
-
-@pytest.fixture
-def file_before_yml():
-    return get_fixture_path('file_before.yml')
-
-
-@pytest.fixture
-def file_after_yml():
-    return get_fixture_path('file_after.yml')
-
-
-@pytest.fixture
-def correct_stylish():
-    return read_file_content(get_fixture_path('result_stylish.txt'))
-
-
-@pytest.fixture
-def correct_plain():
-    return read_file_content(get_fixture_path('result_plain.txt'))
-
-
-@pytest.fixture
-def correct_extended_stylish():
-    return read_file_content(get_fixture_path('result_extended_stylish.txt'))
-
-
-@pytest.fixture
-def correct_extended_plain():
-    return read_file_content(get_fixture_path('result_extended_plain.txt'))
-
-
 @pytest.mark.parametrize(
-    ["file_before", "file_after", "formatter", "expected"],
+    'file_before, file_after, formatter, expected',
     [
         [
-            'file_before_json',
-            'file_after_json',
+            'file_before.json',
+            'file_after.json',
             'stylish',
-            'correct_stylish',
+            'result_stylish.txt',
         ],
         [
-            'file_before_json',
-            'file_after_json',
+            'file_before.json',
+            'file_after.json',
             'plain',
-            'correct_plain',
+            'result_plain.txt',
         ],
         [
-            'file_before_yml',
-            'file_after_yml',
+            'file_before.yml',
+            'file_after.yml',
             'stylish',
-            'correct_stylish',
+            'result_stylish.txt',
         ],
         [
-            'file_before_yml',
-            'file_after_yml',
+            'file_before.yml',
+            'file_after.yml',
             'plain',
-            'correct_plain',
+            'result_plain.txt',
+        ],
+        [
+            'file_extended_before.json',
+            'file_extended_after.json',
+            'stylish',
+            'result_extended_stylish.txt',
+        ],
+        [
+            'file_extended_before.json',
+            'file_extended_after.json',
+            'plain',
+            'result_extended_plain.txt',
+        ],
+        [
+            'file_extended_before.yml',
+            'file_extended_after.yml',
+            'stylish',
+            'result_extended_stylish.txt',
+        ],
+        [
+            'file_extended_before.yml',
+            'file_extended_after.yml',
+            'plain',
+            'result_extended_plain.txt',
         ],
     ]
 )
-def test_gendiff(file_before, file_after, formatter, expected, request):
-    file_before = request.getfixturevalue(file_before)
-    file_after = request.getfixturevalue(file_after)
-    expected = request.getfixturevalue(expected)
-    assert generate_diff(file_before, file_after, formatter) == expected
+def test_gendiff(file_before, file_after, formatter, expected):
+    path_before = get_fixture_path(file_before)
+    path_after = get_fixture_path(file_after)
+    path_expected = get_fixture_path(expected)
 
-
-@pytest.fixture
-def file_extended_before_json():
-    return get_fixture_path('file_extended_before.json')
-
-
-@pytest.fixture
-def file_extended_after_json():
-    return get_fixture_path('file_extended_after.json')
-
-
-@pytest.fixture
-def file_extended_before_yml():
-    return get_fixture_path('file_extended_before.yml')
-
-
-@pytest.fixture
-def file_extended_after_yml():
-    return get_fixture_path('file_extended_after.yml')
-
-
-@pytest.mark.parametrize(
-    ["file_before", "file_after", "formatter", "expected"],
-    [
-        [
-            'file_extended_before_json',
-            'file_extended_after_json',
-            'stylish',
-            'correct_extended_stylish',
-        ],
-        [
-            'file_extended_before_json',
-            'file_extended_after_json',
-            'plain',
-            'correct_extended_plain',
-        ],
-        [
-            'file_extended_before_yml',
-            'file_extended_after_yml',
-            'stylish',
-            'correct_extended_stylish',
-        ],
-        [
-            'file_extended_before_yml',
-            'file_extended_after_yml',
-            'plain',
-            'correct_extended_plain',
-        ],
-    ]
-)
-def test_gendiff_extended(file_before, file_after,
-                          formatter, expected, request):
-    file_before = request.getfixturevalue(file_before)
-    file_after = request.getfixturevalue(file_after)
-    expected = request.getfixturevalue(expected)
-    assert generate_diff(file_before, file_after, formatter) == expected
+    assert generate_diff(path_before, path_after, formatter) == \
+        read_file_content(path_expected)
